@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ==================================================== -->
+<!-- Build file for Dream Home application -->
+<!-- build.xml, Saterday, August 11, 2012	 -->
+<!-- Author: Pathmasri Ambegoda -->
+<!-- Email : ambegodas@gmail.com -->
+<!-- ==================================================== -->
+
+
+<project name="ejbmodule_1" default="all" basedir=".">
+
+<!-- Main target -->
+	<target name="all" depends="init,build,buildJar,deployJar,createApiJar"/>
+
+	<target name="init">	
+		<property name="dirs.base" value="${basedir}"/>
+		<property name="classdir" value="${dirs.base}/build/class"/>
+		<property name="src" value="${dirs.base}/src"/>
+		<property name="jar" value="${dirs.base}/jar" ></property>
+		<property name="deployDir" value="/home/pathmasri/apps/jboss-4.2.3.GA/server/default/deploy"/>
+		<property name="depJar" value="${dirs.base}/depJar"></property>
+		<property name="apiJar" value="${dirs.base}/apiJar"></property>
+		<property name="apiJarFileDir" value="${dirs.base}/apiJarFile"></property>
+		<property name="api.dir" value="${src}/com/exclusoft/ejbmodule1/api"></property>
+
+		
+		<path id="compile.classpath">
+		   <fileset dir="/home/pathmasri/workspace/resources">
+		      <include name="*.jar"/>
+		  </fileset>
+		</path>
+		<mkdir dir="${jar}"></mkdir>
+		<mkdir dir ="${classdir}"/>	
+        <mkdir dir ="${depJar}"/>
+		<mkdir dir ="${apiJar}"/>
+		<mkdir dir ="${apiJarFileDir}"/>
+	</target>
+
+	<!-- Compile Java Files and store in /build/src directory -->
+	<target name="build" >	
+		 <javac srcdir="${src}" destdir="${classdir}" includes="**/*.java" >
+		 <classpath refid="compile.classpath"/>	 
+		 </javac>	
+	</target>
+
+	<!-- Create the Jar File -->
+	<target name="buildJar" depends="init">
+		<copy todir="${jar}">
+		<fileset dir="${classdir}" includes="**/*.class" /> 
+		</copy>
+		
+		<!-- Create war file and place in ear directory -->
+		<jar jarfile="${depJar}/ejbmodule_1.jar" basedir="${jar}" />
+	</target>
+
+
+	
+	<target name = "deployJar">
+		 <copy todir="${deployDir}">
+		   <fileset dir= "${depJar}" includes= "ejbmodule_1.jar" ></fileset>
+		 </copy>	 	
+	</target>
+	
+	   <target name = "createApiJar">
+	   	
+	   	<javac srcdir="${api.dir}" destdir = "${apiJar}" includes = "**/*.java"/>
+	   	<jar jarfile="${apiJarFileDir}/ejbmodule_1_api.jar" basedir="${apiJar}" />
+	    	
+		</target>
+	
+	
+
+</project>

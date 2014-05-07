@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name = "Dreams" default = "deploy" basedir = "." >
+
+  <target name = "deploy">
+     <property name = "dir.ejb_1" value = "${basedir}/ejbmodule_1/lib"></property>
+     <property name = "dir.web_1" value = "${basedir}/webmodule_1/lib"></property>
+     <property name = "dir.web_1" value = "${basedir}/webmodule_1/lib"></property>
+     
+     <copy todir="${dir.ejb_1}">
+		<fileset dir="${basedir}/common" includes="commons.jar" /> 
+	 </copy>
+	 
+	<copy todir="${dir.web_1}">
+		<fileset dir="${basedir}/common" includes="commons.jar" /> 
+	 </copy>
+	 
+	 <copy todir="${dir.web_1}">
+		<fileset dir="${basedir}/ejbmodule_1/apiJarFile" includes="ejbmodule_1_api.jar" /> 
+	 </copy>
+	 
+  </target>
+
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="webmodule_1" default="createJar" basedir=".">
+
+<target name = "createJar">
+ <property name = "dir.base" value = "${basedir}" ></property>
+ <property name = "dir.build" value = "${dir.base}/build/classes" ></property>
+ <property name = "dir.src" value = "${dir.base}/src" ></property>
+ 
+ <mkdir dir = "${dir.build}"/>
+ 
+ <javac srcdir="${dir.src}" destdir="${dir.build}" includes="**/*.java" >
+ 
+ </javac>
+ <jar jarfile="${dir.base}/commons.jar" basedir="${dir.build}" />
+ 
+
+</target>
+
+</project>

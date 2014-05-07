@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<application>
+<display-name>Example 2 </display-name>
+<module>
+<web>
+<web-uri>dreamhome.war</web-uri>
+<context-root>/dreamhome</context-root>
+</web>
+</module>
+</application>
